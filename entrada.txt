@@ -1,0 +1,11 @@
+k_inicio
+    float 0v1
+    float v2
+    kout<<"Digite v1"
+    kin>>v1
+    kout<<"Digite v2"
+    kin>>v2
+    kout<<"soma = "
+    kout<<v1+v2
+k_fim
+
