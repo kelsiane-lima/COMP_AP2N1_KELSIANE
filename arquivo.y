@@ -71,47 +71,51 @@ cod: cod cmdos
 	;
 
 cmdos: DECL VAR {
-					VARS * aux = srch(l1,$2);
-					if (aux == NULL)
-						l1 = ins(l1,$2,0);
-					else
-						printf ("Redeclaração de variável: %s\n",$2);
-				 	 }
+		VARS * aux = srch(l1,$2);
+		if (aux == NULL)
+			l1 = ins(l1,$2,0);
+		else
+			printf ("Redeclaração de variável: %s\n",$2);
+				  }
 	|
 	
 		OUTPUT exp {
-						printf ("%.2f \n",$2);
-						}
-    |
+			
+			printf ("%.2f \n",$2);
+				}
+        |
 		OUTPUT STR {
-            int i = strlen($2);
+            		int i = strlen($2);
 
-                $2[0] = ' ';
-                $2[i-1] = '\0';
+                	$2[0] = ' ';
+                	$2[i-1] = '\0';
           
-			    printf ("%s ",$2);
+			 printf ("%s ",$2);
 		}
 
 	| 	
+	
        INPUT VAR {
 
-					VARS * aux = srch(l1,$2);
-					if (aux == NULL){
-						printf ("variável nao definida: %s\n",$2);
-                        return -1;
-						} else{
-                            float x;
-		                    scanf ("%f",&x);
-                            l1 = ins(l1,$2,x);
-        }
+			VARS * aux = srch(l1,$2);
+			if (aux == NULL){
+				printf ("variável nao definida: %s\n",$2);
+                	        return -1;
+				} 
+			else {
+                            	float x;
+		                scanf ("%f",&x);
+                            	l1 = ins(l1,$2,x);
+        			}
 		}
-    |
-		VAR '=' exp {
-					VARS * aux = srch(l1,$1);
-					if (aux == NULL)
-						printf ("Variável não declarada: %s\n",$1);
-					else
-						aux -> valor = $3;
+    	|
+	
+	VAR '=' exp {
+			VARS * aux = srch(l1,$1);
+			if (aux == NULL)
+				printf ("Variável não declarada: %s\n",$1);
+			else
+				aux -> valor = $3;
 		}
 	;
 
